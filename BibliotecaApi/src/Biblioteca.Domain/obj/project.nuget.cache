@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "kp4D1FHX73G7iaXkIZ2IzKIsLV7RxZBRBVUOXNHerZYMIWncHJ5DNBk1/uG6h1dA68LbRasvghJZGGNZIZUzcg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Área de Trabalho\\TrabalhoFaculdade\\BibliotecaApi\\src\\Biblioteca.Domain\\Biblioteca.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\guilh\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\guilh\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

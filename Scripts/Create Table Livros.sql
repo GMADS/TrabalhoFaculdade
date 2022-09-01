@@ -1,0 +1,13 @@
+CREATE TABLE [dbo].[Livros](
+	[Id] [int] NOT NULL,
+	[NomeDoLivro] [varchar](80) NULL,
+	[NomeDoAutor] [varchar](80) NULL,
+	[NumeroDePaginas] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
