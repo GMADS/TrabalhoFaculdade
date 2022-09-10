@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XlxbVNwUCeYymKefO1SAEO3b+2bOI5GdHBhAwDEWC8AvzMgGN56Sq4SWsfhMYxvQO/bkfDIpKEQOiPzAc/u71A==",
+  "dgSpecHash": "JO5RhCgwIFxvsVK0CFieitFaj87v8rOKy2pGpcEk5gYRyzi9lDmfLh0MTZzGNFdQj558sTCzzugLp98bk8udAg==",
   "success": true,
   "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Área de Trabalho\\TrabalhoFaculdade\\BibliotecaApi\\src\\Biblioteca.Api\\BibliotecaApi.csproj",
   "expectedPackageFiles": [
@@ -134,14 +134,16 @@
     "C:\\Users\\guilh\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\guilh\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\guilh\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\guilh\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.28\\microsoft.netcore.app.host.win-x64.3.1.28.nupkg.sha512",
+    "C:\\Users\\guilh\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "O pacote 'Nuget 0.0.1' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto '.NETCoreApp,Version=v3.1'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "message": "O pacote 'Nuget 0.0.1' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto '.NETCoreApp,Version=v3.1'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
       "libraryId": "Nuget",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"
