@@ -17,7 +17,7 @@ namespace BibliotecaApi.Controllers
             _repositorio = repositorio;
         }
 
-        [HttpGet("Info")]
+        [HttpGet("{id}")]
         public IActionResult ObterBiblioteca(int id)
         {
             try
@@ -34,7 +34,7 @@ namespace BibliotecaApi.Controllers
                 throw ex;
             }
         }
-        [HttpGet("Todos")]
+        [HttpGet()]
         public IActionResult ObterBiblioteca()
         {
             var TodosOsLivros =  _repositorio.ListarBibliotecas();
@@ -42,14 +42,14 @@ namespace BibliotecaApi.Controllers
             return Ok(TodosOsLivros);            
         }
 
-        [HttpPost("Adi")]
-        public IActionResult AdicionarLivro( [FromBody] Livros livro)
+        [HttpPost()]
+        public IActionResult AdicionarLivro(Livros livro)
         {
             _repositorio.Adicionar(livro);
             return Ok();
         }
 
-         [HttpPut("Alt/{id}")]
+         [HttpPut("{id}")]
         public IActionResult AlterarLivro(int id,[FromBody] Livros livro)      
         {
             var bibliotecaAntiga = _repositorio.ObterPorId(id);
@@ -65,7 +65,7 @@ namespace BibliotecaApi.Controllers
             return Ok();           
         }
 
-         [HttpDelete("Del")]
+         [HttpDelete("")]
         public IActionResult ExcluirLivro(int id)      
         {
             var biblioteca = _repositorio.ObterPorId(id);
