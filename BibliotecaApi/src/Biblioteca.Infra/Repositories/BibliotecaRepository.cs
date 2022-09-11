@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Biblioteca.Domain.Entities;
-using Biblioteca.Domain.Repositories;
+using Biblioteca.Domain.Interface.Repositories;
 using Biblioteca.Infra.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Biblioteca.Infra.Repositories
 {
-    public class BibliotecaRepository :IBibliotecaRepository
+    public class BibliotecaRepository : IBibliotecaRepository
     {
         private readonly BibliotecaContext _context;
 
@@ -18,10 +19,12 @@ namespace Biblioteca.Infra.Repositories
             _context = context;
         }
 
-        public void Adicionar(Livros biblioteca)
+        public async Task AdicionarAsync(Livros biblioteca)
         {
             _context.Add(biblioteca);
             _context.SaveChanges();
+
+            await Task.CompletedTask;
         }
 
         public void Alterar(Livros biblioteca)

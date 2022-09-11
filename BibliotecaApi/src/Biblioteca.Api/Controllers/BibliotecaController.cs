@@ -1,5 +1,7 @@
+using Biblioteca.Domain.Command.Post;
 using Biblioteca.Domain.Entities;
-using Biblioteca.Domain.Repositories;
+using Biblioteca.Domain.Interface.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BibliotecaApi.Controllers
@@ -8,13 +10,11 @@ namespace BibliotecaApi.Controllers
     [Route("[controller]")]
     public class BibliotecaController : ControllerBase
     {
-        //Usando a inteface, sempre fazer esse procedimento para injeção de dependencias. 
-        private readonly IBibliotecaRepository _repositorio;
+        private readonly IMediator _mediator;
 
-        /*Construtor, sempre qe mina class for instanciada terei que passa IBibliotecaRepository*/
-        public BibliotecaController(IBibliotecaRepository repositorio)
+        public BibliotecaController(IMediator mediator)
         {
-            _repositorio = repositorio;
+            _mediator = mediator;
         }
 
         [HttpGet("Info")]
@@ -22,7 +22,7 @@ namespace BibliotecaApi.Controllers
         {
             try
             {
-                var bibliotecaAntiga = _repositorio.ObterPorId(id);
+                var bibliotecaAntiga = _mediator.ObterPorIdAsync(id);
                 if(bibliotecaAntiga == null)
                 {
                     return NotFound();
@@ -37,22 +37,19 @@ namespace BibliotecaApi.Controllers
         [HttpGet("Todos")]
         public IActionResult ObterBiblioteca()
         {
-            var TodosOsLivros =  _repositorio.ListarBibliotecas();
+            var TodosOsLivros =  _mediator.ListarBibliotecasAsync();
 
             return Ok(TodosOsLivros);            
         }
 
-        [HttpPost("Adi")]
-        public IActionResult AdicionarLivro( [FromBody] Livros livro)
-        {
-            _repositorio.Adicionar(livro);
-            return Ok();
-        }
+        [HttpPost()]
+        public IActionResult AdicionarLivro( [FromBody] AddLivroCommand livro) =>
+            Ok(_mediator.Send(livro));
 
          [HttpPut("Alt/{id}")]
         public IActionResult AlterarLivro(int id,[FromBody] Livros livro)      
         {
-            var bibliotecaAntiga = _repositorio.ObterPorId(id);
+            var bibliotecaAntiga = _mediator.ObterPorIdAsync(id);
             if(bibliotecaAntiga == null)
             {
                 return NotFound();
@@ -61,19 +58,19 @@ namespace BibliotecaApi.Controllers
             bibliotecaAntiga.NomeDoLivro = livro.NomeDoLivro;
             bibliotecaAntiga.NomeDoAutor = livro.NomeDoAutor;
             bibliotecaAntiga.NumeroDePaginas = livro.NumeroDePaginas; 
-            _repositorio.Alterar(bibliotecaAntiga);
+            _mediator.Alterar(bibliotecaAntiga);
             return Ok();           
         }
 
          [HttpDelete("Del")]
         public IActionResult ExcluirLivro(int id)      
         {
-            var biblioteca = _repositorio.ObterPorId(id);
+            var biblioteca = _mediator.ObterPorIdAsync(id);
             if(biblioteca == null)
             {
                 return NotFound();
             }
-            _repositorio.RemoverBiblioteca(biblioteca);
+            _mediator.RemoverBiblioteca(biblioteca);
 
             return Ok();            
         }
