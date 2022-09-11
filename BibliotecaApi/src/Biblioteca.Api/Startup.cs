@@ -1,3 +1,5 @@
+using AutoMapper;
+using Biblioteca.Domain.Command.Post;
 using Biblioteca.Domain.Interface.Repositories;
 using Biblioteca.Infra.Contexts;
 using Biblioteca.Infra.Repositories;
@@ -8,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
@@ -26,11 +29,17 @@ namespace BibliotecaApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMediatR(typeof(Startup));
-            services.AddSingleton<IBibliotecaRepository, BibliotecaRepository>();
+            services.AddScoped<IBibliotecaRepository, BibliotecaRepository>();
+            services.AddMediatR(typeof(AddLivroCommand).GetTypeInfo().Assembly);
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddDbContext<BibliotecaContext>(opt =>
-              opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+            {
+                opt.UseSqlServer(Configuration.GetConnectionString("connectionString"));
+                opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            });
+              
             services.AddControllers();
 
             AddSwagger(services);

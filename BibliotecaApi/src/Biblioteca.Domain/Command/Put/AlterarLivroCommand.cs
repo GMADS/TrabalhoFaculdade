@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace Biblioteca.Domain.Command.Put
@@ -9,12 +10,5 @@ namespace Biblioteca.Domain.Command.Put
         public string NomeDoLivro { get; set; }
         public string NomeDoAutor { get; set; }
         public int NumeroDePaginas { get; set; }
-
-        public async Task AddIdAsync(int ind)
-        {
-            Id = Id;
-
-            await Task.CompletedTask;
-        }
     }
 }

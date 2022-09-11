@@ -16,7 +16,7 @@ namespace Biblioteca.Domain.Mapper
                 .ForMember(x => x.NomeDoAutor, opt => opt.MapFrom(src => src.NomeDoAutor))
                 .ForMember(x => x.NumeroDePaginas, opt => opt.MapFrom(src => src.NumeroDePaginas));
 
-            CreateMap<GetLivroByIdQueryResponse, Livro>()
+            CreateMap<Livro, GetLivroByIdQueryResponse>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(x => x.NomeDoLivro, opt => opt.MapFrom(src => src.NomeDoLivro))
                 .ForMember(x => x.NomeDoAutor, opt => opt.MapFrom(src => src.NomeDoAutor))

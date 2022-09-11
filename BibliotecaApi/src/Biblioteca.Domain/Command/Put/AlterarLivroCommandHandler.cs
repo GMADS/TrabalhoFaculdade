@@ -26,9 +26,9 @@ namespace Biblioteca.Domain.Command.Put
         {
             try
             {
-                await _repositorio.AlterarAsync(
-                    _mapper.Map<Livro>(request)
-                );
+                var livroAlterado = _mapper.Map<Livro>(request);
+
+                await _repositorio.AlterarAsync(livroAlterado);
 
                 return Unit.Value;
             }

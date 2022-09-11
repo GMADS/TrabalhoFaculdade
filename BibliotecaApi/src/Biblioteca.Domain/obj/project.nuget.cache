@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fbYt1H8H1F6pIU6wj+9PJhZEcAB7mTEpm/Ze0N2uT2boiUHQbR/gCtgi5AzsGxJAiamqJJPW5NaLi+T9qLnBXg==",
+  "dgSpecHash": "9gJgxVVn1a4xMNoxgzfntKvWpDaZ3DjKCbB2BbklqqQ9Ihi71sgozdW8pIBzKLUIHSId0pSpm7o4K+oVH0Jk9A==",
   "success": true,
   "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Área de Trabalho\\TrabalhoFaculdade\\BibliotecaApi\\src\\Biblioteca.Domain\\Biblioteca.Domain.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\guilh\\.nuget\\packages\\microsoft.extensions.primitives\\3.0.0\\microsoft.extensions.primitives.3.0.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\guilh\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\system.buffers\\4.4.0\\system.buffers.4.4.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\system.componentmodel.annotations\\4.6.0\\system.componentmodel.annotations.4.6.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\system.memory\\4.5.2\\system.memory.4.5.2.nupkg.sha512",

@@ -32,7 +32,7 @@ namespace BibliotecaApi.Controllers
             var response = await _mediator.Send(new GetLivroByIdQuery(id));
 
             if(response == null)
-                return NotFound();
+                return NoContent();
 
             return await Task.FromResult(Ok(response));            
         }
@@ -45,16 +45,16 @@ namespace BibliotecaApi.Controllers
         public IActionResult AdicionarLivro( [FromBody] AddLivroCommand livro) =>
             Ok(_mediator.Send(livro));
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> AlterarLivroAsync(int id,[FromBody] AlterarLivroCommand livro)      
+        [HttpPut()]
+        public async Task<IActionResult> AlterarLivroAsync([FromBody] AlterarLivroCommand livro)      
         {
-            var checkLivro = await _mediator.Send(new GetLivroByIdQuery(id));
+            var checkLivro = await _mediator.Send(new GetLivroByIdQuery(livro.Id));
 
             if (checkLivro == null)
-                return NotFound();
+                return NoContent();
 
             return Ok(
-                await _mediator.Send(livro.AddIdAsync(id))
+                await _mediator.Send(livro)
             );           
         }
 
@@ -64,7 +64,7 @@ namespace BibliotecaApi.Controllers
             var checkLivro = await _mediator.Send(new GetLivroByIdQuery(id));
 
             if (checkLivro == null)
-                return NotFound();
+                return NoContent();
 
             var excluirLivro = await _mediator.Send(
                 _mapper.Map<DeletarLivroCommand>(checkLivro)

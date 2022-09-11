@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Biblioteca.Domain.Entities;
 using Biblioteca.Domain.Interface.Repositories;
 using Biblioteca.Infra.Contexts;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Biblioteca.Infra.Repositories
 {
@@ -13,11 +12,8 @@ namespace Biblioteca.Infra.Repositories
     {
         private readonly BibliotecaContext _context;
 
-
-        public BibliotecaRepository(BibliotecaContext context)
-        {
+        public BibliotecaRepository(BibliotecaContext context) =>
             _context = context;
-        }
 
         public async Task AdicionarAsync(Livro biblioteca)
         {
@@ -27,33 +23,30 @@ namespace Biblioteca.Infra.Repositories
             await Task.CompletedTask;
         }
 
-        public void Alterar(Livro biblioteca)
+        public async Task AlterarAsync(Livro biblioteca)
         {
-            _context.Entry(biblioteca).State = EntityState.Modified;
+            _context.Update(biblioteca).State = EntityState.Modified;
             _context.SaveChanges();
+
+            await Task.CompletedTask;
         }
 
-        public IEnumerable<Livro> ListarBibliotecas()
-        {
-            return _context.Bibliotecas.ToList();
-        }
+        public async Task<IEnumerable<Livro>> ListarBibliotecasAsync() =>
+            await Task.FromResult(
+                _context.Bibliotecas.ToList()
+            );
 
-        public Livro ObterPorId(int id)
-        {
-            try
-            {
-                return _context.Bibliotecas.FirstOrDefault(x => x.Id == id);
-            }
-            catch (System.Exception ex)
-            {
-                
-                throw new ArgumentException("Erro ao obter livro");
-            }
-        }
-        public void RemoverBiblioteca(Livro biblioteca)
+        public async Task<Livro> ObterPorIdAsync(int id) =>
+            await Task.FromResult(
+                _context.Bibliotecas.FirstOrDefault(x => x.Id == id)
+            );
+
+        public async Task RemoverBibliotecaAsync(Livro biblioteca)
         {
             _context.Remove(biblioteca);
             _context.SaveChanges();
+
+            await Task.CompletedTask;
         }
     }
 }
