@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteca.Domain.Command.Put
 {
-    public class AlterarLivroCommand : IRequest<AlterarLivroCommandResponse>
+    public class AlterarLivroCommand : IRequest
     {
         public int Id { get; set; }
         public string NomeDoLivro { get; set; }

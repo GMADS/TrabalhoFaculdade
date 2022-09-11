@@ -48,12 +48,14 @@ namespace BibliotecaApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> AlterarLivroAsync(int id,[FromBody] AlterarLivroCommand livro)      
         {
-            var alterarLivro = await _mediator.Send(livro.AddIdAsync(id));
+            var checkLivro = await _mediator.Send(new GetLivroByIdQuery(id));
 
-            if(alterarLivro == null)
+            if (checkLivro == null)
                 return NotFound();
 
-            return Ok();           
+            return Ok(
+                await _mediator.Send(livro.AddIdAsync(id))
+            );           
         }
 
         [HttpDelete("{id}")]
