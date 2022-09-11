@@ -1,8 +1,9 @@
 using Biblioteca.Domain.Command.Post;
 using Biblioteca.Domain.Entities;
-using Biblioteca.Domain.Interface.Repositories;
+using Biblioteca.Domain.Query.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace BibliotecaApi.Controllers
 {
@@ -17,23 +18,17 @@ namespace BibliotecaApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("Info")]
-        public IActionResult ObterBiblioteca(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
         {
-            try
-            {
-                var bibliotecaAntiga = _mediator.ObterPorIdAsync(id);
-                if(bibliotecaAntiga == null)
-                {
-                    return NotFound();
-                }
-                return Ok(bibliotecaAntiga);            
-            }
-            catch (System.Exception ex)
-            {            
-                throw ex;
-            }
+            var response = await _mediator.Send(new GetLivroByIdQuery(id));
+
+            if(response == null)
+                return NotFound();
+
+            return await Task.FromResult(Ok(response));            
         }
+
         [HttpGet("Todos")]
         public IActionResult ObterBiblioteca()
         {
