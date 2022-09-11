@@ -11,15 +11,15 @@ namespace Biblioteca.Infra.Contexts
 
         }
 
-        public DbSet<Livros> Bibliotecas { get; set; }
+        public DbSet<Livro> Bibliotecas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Livros>().ToTable("Livros");
-            modelBuilder.Entity<Livros>().Property(x => x.Id);
-            modelBuilder.Entity<Livros>().Property(x => x.NomeDoAutor);
-            modelBuilder.Entity<Livros>().Property(x => x.NomeDoLivro);
-            modelBuilder.Entity<Livros>().Property(x => x.NumeroDePaginas);
+            modelBuilder.Entity<Livro>().ToTable("Livros");
+            modelBuilder.Entity<Livro>().Property(x => x.Id);
+            modelBuilder.Entity<Livro>().Property(x => x.NomeDoAutor);
+            modelBuilder.Entity<Livro>().Property(x => x.NomeDoLivro);
+            modelBuilder.Entity<Livro>().Property(x => x.NumeroDePaginas);
         }
 
     }

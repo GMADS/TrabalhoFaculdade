@@ -9,12 +9,18 @@ namespace Biblioteca.Domain.Mapper
     {
         public Mappers()
         {
-            CreateMap<AddLivroCommand, Livros>()
+            CreateMap<AddLivroCommand, Livro>()
                 .ForMember(x => x.NomeDoLivro, opt => opt.MapFrom(src => src.NomeDoLivro))
                 .ForMember(x => x.NomeDoAutor, opt => opt.MapFrom(src => src.NomeDoAutor))
                 .ForMember(x => x.NumeroDePaginas, opt => opt.MapFrom(src => src.NumeroDePaginas));
 
-            CreateMap<GetLivroByIdQueryResponse, Livros>()
+            CreateMap<GetLivroByIdQueryResponse, Livro>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(x => x.NomeDoLivro, opt => opt.MapFrom(src => src.NomeDoLivro))
+                .ForMember(x => x.NomeDoAutor, opt => opt.MapFrom(src => src.NomeDoAutor))
+                .ForMember(x => x.NumeroDePaginas, opt => opt.MapFrom(src => src.NumeroDePaginas));
+
+            CreateMap<Livro, Query.GetAll.Models.Livro>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(x => x.NomeDoLivro, opt => opt.MapFrom(src => src.NomeDoLivro))
                 .ForMember(x => x.NomeDoAutor, opt => opt.MapFrom(src => src.NomeDoAutor))

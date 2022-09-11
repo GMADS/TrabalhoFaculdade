@@ -23,7 +23,7 @@ namespace Biblioteca.Domain.Command.Post
 
         public async Task<Unit> Handle(AddLivroCommand request, CancellationToken cancellationToken)
         {
-            var livro = _mapper.Map<Livros>(request);
+            var livro = _mapper.Map<Livro>(request);
 
             await _repositorio.AdicionarAsync(livro);
 

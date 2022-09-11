@@ -6,10 +6,10 @@ namespace Biblioteca.Domain.Interface.Repositories
 {
     public interface IBibliotecaRepository
     {
-        Task AlterarAsync(Livros biblioteca);
-        Task<Livros> ObterPorIdAsync(int id);
-        Task AdicionarAsync(Livros biblioteca);
-        Task RemoverBibliotecaAsync(Livros biblioteca);
-        Task<IEnumerable<Livros>> ListarBibliotecasAsync();
+        Task AlterarAsync(Livro biblioteca);
+        Task<Livro> ObterPorIdAsync(int id);
+        Task AdicionarAsync(Livro biblioteca);
+        Task RemoverBibliotecaAsync(Livro biblioteca);
+        Task<IEnumerable<Livro>> ListarBibliotecasAsync();
     }
 }

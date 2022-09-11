@@ -1,5 +1,6 @@
 using Biblioteca.Domain.Command.Post;
 using Biblioteca.Domain.Entities;
+using Biblioteca.Domain.Query.GetAll;
 using Biblioteca.Domain.Query.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,8 @@ namespace BibliotecaApi.Controllers
     {
         private readonly IMediator _mediator;
 
-        public BibliotecaController(IMediator mediator)
-        {
+        public BibliotecaController(IMediator mediator) =>
             _mediator = mediator;
-        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
@@ -29,22 +28,19 @@ namespace BibliotecaApi.Controllers
             return await Task.FromResult(Ok(response));            
         }
 
-        [HttpGet("Todos")]
-        public IActionResult ObterBiblioteca()
-        {
-            var TodosOsLivros =  _mediator.ListarBibliotecasAsync();
-
-            return Ok(TodosOsLivros);            
-        }
+        [HttpGet()]
+        public async Task<IActionResult> GetLivrosAsync() =>
+            Ok(await _mediator.Send(new GetLivrosAllQuery()));
 
         [HttpPost()]
         public IActionResult AdicionarLivro( [FromBody] AddLivroCommand livro) =>
             Ok(_mediator.Send(livro));
 
-         [HttpPut("Alt/{id}")]
-        public IActionResult AlterarLivro(int id,[FromBody] Livros livro)      
+        [HttpPut("{id}")]
+        public IActionResult AlterarLivro(int id,[FromBody] Livro livro)      
         {
             var bibliotecaAntiga = _mediator.ObterPorIdAsync(id);
+
             if(bibliotecaAntiga == null)
             {
                 return NotFound();

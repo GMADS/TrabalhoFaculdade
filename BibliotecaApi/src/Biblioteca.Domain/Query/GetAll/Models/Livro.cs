@@ -1,6 +1,6 @@
-namespace Biblioteca.Domain.Entities
+﻿namespace Biblioteca.Domain.Query.GetAll.Models
 {
-    public class Livros
+    public class Livro
     {
         public int Id { get; set; }
         public string NomeDoLivro { get; set; }
