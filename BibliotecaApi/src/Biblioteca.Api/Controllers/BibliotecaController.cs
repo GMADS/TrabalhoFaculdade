@@ -1,5 +1,7 @@
+using AutoMapper;
+using Biblioteca.Domain.Command.Delete;
 using Biblioteca.Domain.Command.Post;
-using Biblioteca.Domain.Entities;
+using Biblioteca.Domain.Command.Put;
 using Biblioteca.Domain.Query.GetAll;
 using Biblioteca.Domain.Query.GetById;
 using MediatR;
@@ -12,10 +14,17 @@ namespace BibliotecaApi.Controllers
     [Route("[controller]")]
     public class BibliotecaController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public BibliotecaController(IMediator mediator) =>
+        public BibliotecaController(
+            IMapper mapper,
+            IMediator mediator
+        )
+        {
+            _mapper = mapper;
             _mediator = mediator;
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
@@ -37,33 +46,29 @@ namespace BibliotecaApi.Controllers
             Ok(_mediator.Send(livro));
 
         [HttpPut("{id}")]
-        public IActionResult AlterarLivro(int id,[FromBody] Livro livro)      
+        public async Task<IActionResult> AlterarLivroAsync(int id,[FromBody] AlterarLivroCommand livro)      
         {
-            var bibliotecaAntiga = _mediator.ObterPorIdAsync(id);
+            var alterarLivro = await _mediator.Send(livro.AddIdAsync(id));
 
-            if(bibliotecaAntiga == null)
-            {
+            if(alterarLivro == null)
                 return NotFound();
-            }
 
-            bibliotecaAntiga.NomeDoLivro = livro.NomeDoLivro;
-            bibliotecaAntiga.NomeDoAutor = livro.NomeDoAutor;
-            bibliotecaAntiga.NumeroDePaginas = livro.NumeroDePaginas; 
-            _mediator.Alterar(bibliotecaAntiga);
             return Ok();           
         }
 
-         [HttpDelete("Del")]
-        public IActionResult ExcluirLivro(int id)      
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> ExcluirLivro(int id)      
         {
-            var biblioteca = _mediator.ObterPorIdAsync(id);
-            if(biblioteca == null)
-            {
-                return NotFound();
-            }
-            _mediator.RemoverBiblioteca(biblioteca);
+            var checkLivro = await _mediator.Send(new GetLivroByIdQuery(id));
 
-            return Ok();            
+            if (checkLivro == null)
+                return NotFound();
+
+            var excluirLivro = await _mediator.Send(
+                _mapper.Map<DeletarLivroCommand>(checkLivro)
+            );
+
+            return Ok(excluirLivro);            
         }
 
     }
